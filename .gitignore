@@ -1,0 +1,7 @@
+.env
+.tef_dist/*
+node_modules
+.pnpm-store
+.codebuddy
+.vscode
+dist

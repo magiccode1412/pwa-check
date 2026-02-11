@@ -1,0 +1,30 @@
+# .cnb.yml
+$:
+  vscode:
+    - docker:
+        image: docker.cnb.cool/magiccode1412/magic-docker-images/node:latest
+      services:
+        - vscode
+        - docker
+
+  web_trigger_edgeone:
+    - imports: https://cnb.cool/magiccode1412/secret/-/blob/main/env.yml
+      stages:
+        - name: build
+          image: node:20
+          script: npm install -g pnpm && pnpm i && pnpm build
+        - name: deploy
+          image: tencentcom/deploy-eopages:latest
+          script: edgeone pages deploy ./dist -n ${CNB_REPO_NAME_LOWERCASE} -a overseas -t ${EDGEONE_API_TOKEN}
+
+  web_trigger_github:
+    - imports: https://cnb.cool/magiccode1412/secret/-/blob/main/env.yml
+      stages:
+        - name: sync_to_github
+          image: tencentcom/git-sync
+          settings:
+            target_url: https://github.com/${GITHUB_USERNAME}/${CNB_REPO_NAME_LOWERCASE}.git
+            auth_type: https
+            username: "${GITHUB_USERNAME}"
+            password: "${GITHUB_ACCESS_TOKEN}"
+            force: true
