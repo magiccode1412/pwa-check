@@ -10,7 +10,7 @@ $:
           image: tencentcom/deploy-eopages:latest
           script: edgeone pages deploy ./dist -n ${CNB_REPO_NAME_LOWERCASE} -a overseas -t ${EDGEONE_API_TOKEN}
 
-  web_trigger_github:
+  push:
     - imports: https://cnb.cool/magiccode1412/secret/-/blob/main/env.yml
       stages:
         - name: sync_to_github

@@ -15,7 +15,7 @@ permissions:
 
 # 部署到 GitHub Pages 时的资源基础路径（子路径部署需以 / 开头、不以 / 结尾）
 env:
-  VITEPRESS_BASE: /pwa-check
+  VITE_BASE_PATH: /pwa-check
 
 jobs:
   # 构建并部署任务

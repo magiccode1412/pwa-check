@@ -3,6 +3,3 @@ branch:
       - name: edgeone
         description: 部署到edgeone
         event: web_trigger_edgeone
-      - name: github
-        description: 同步到github
-        event: web_trigger_github
