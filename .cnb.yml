@@ -1,12 +1,5 @@
 # .cnb.yml
 $:
-  vscode:
-    - docker:
-        image: docker.cnb.cool/magiccode1412/magic-docker-images/node:latest
-      services:
-        - vscode
-        - docker
-
   web_trigger_edgeone:
     - imports: https://cnb.cool/magiccode1412/secret/-/blob/main/env.yml
       stages:
