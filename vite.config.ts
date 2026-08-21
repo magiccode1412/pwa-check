@@ -10,6 +10,10 @@ export default defineConfig(({ mode }) => {
   const base = env.VITE_BASE_PATH || '/'
   const normalizedBase = base.endsWith('/') ? base : `${base}/`
 
+  // 图标位于 public/ 下，构建后会被拷贝到 base 对应的子路径。
+  // 因此需要为 manifest 中的图标路径拼接 base，确保子路径部署时也能正确加载。
+  const iconSrc = (file: string) => `${normalizedBase}icons/${file}`
+
   return {
     base,
     plugins: [
@@ -27,25 +31,25 @@ export default defineConfig(({ mode }) => {
         theme_color: '#3B82F6',
         icons: [
           {
-            src: '/icons/icon-192.png',
+            src: iconSrc('icon-192.png'),
             sizes: '192x192',
             type: 'image/png',
             purpose: 'any'
           },
           {
-            src: '/icons/icon-192-maskable.png',
+            src: iconSrc('icon-192-maskable.png'),
             sizes: '192x192',
             type: 'image/png',
             purpose: 'maskable'
           },
           {
-            src: '/icons/icon-512.png',
+            src: iconSrc('icon-512.png'),
             sizes: '512x512',
             type: 'image/png',
             purpose: 'any'
           },
           {
-            src: '/icons/icon-512-maskable.png',
+            src: iconSrc('icon-512-maskable.png'),
             sizes: '512x512',
             type: 'image/png',
             purpose: 'maskable'
