@@ -87,6 +87,20 @@ pnpm build
 pnpm preview
 ```
 
+## 📍 指定路径部署
+
+默认情况下，构建产物部署在站点根路径 `/` 下。如需将应用部署到子路径（例如 `https://host/pwa/`），可通过环境变量 `VITE_BASE_PATH` 指定构建时的 `base` 路径：
+
+```bash
+# 部署到 https://host/pwa/
+VITE_BASE_PATH=/pwa pnpm build
+```
+
+> 说明：
+> - `VITE_BASE_PATH` 会在构建时同步控制 Vite 的 `base` 以及 PWA 的 `start_url`、`scope`，确保部署到子路径时 PWA 资源与缓存策略也能正常工作。
+> - 未设置该变量时默认值为 `/`（根路径部署），与原有行为一致。
+> - 可在 `.env` 或 `.env.production` 文件中配置，也可参考根目录下的 `.env.example`。
+
 ## 🎯 使用场景
 
 - **开发者**：测试PWA功能兼容性
